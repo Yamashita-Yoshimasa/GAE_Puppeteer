@@ -129,4 +129,4 @@ dist
 # Local History for Visual Studio Code
 .history/
 
-src/server/public/
+build

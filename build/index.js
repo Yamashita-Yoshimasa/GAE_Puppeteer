@@ -45,33 +45,22 @@ const OpenPage = () => __async(void 0, null, function* () {
 });
 const PORT = process.env.PORT || 5e3;
 const app = express();
-let namesResolve;
-let pricesResolve;
-let idResolve;
-const GetData = () => __async(void 0, null, function* () {
-  const Resolve = yield OpenPage();
-  console.log("\u547C\u3073\u51FA\u3057");
-  [namesResolve, pricesResolve, idResolve] = [
-    Resolve == null ? void 0 : Resolve[0],
-    Resolve == null ? void 0 : Resolve[1],
-    Resolve == null ? void 0 : Resolve[2]
-  ];
-});
-void GetData();
-app.get("/", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.json(JSON.stringify(namesResolve));
-});
-app.get("/pckoubou/prices", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.json(JSON.stringify(pricesResolve));
-});
-app.get("/pckoubou/id", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
-  res.json(JSON.stringify(idResolve));
-});
-app.listen(PORT, () => {
-  console.log("Server running on port %d", PORT);
+void OpenPage().then((Response) => {
+  app.get("/pckoubou/names", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.json(JSON.stringify(Response == null ? void 0 : Response[0]));
+  });
+  app.get("/pckoubou/prices", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.json(JSON.stringify(Response == null ? void 0 : Response[1]));
+  });
+  app.get("/pckoubou/id", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.json(JSON.stringify(Response == null ? void 0 : Response[2]));
+  });
+  app.listen(PORT, () => {
+    console.log("Server running on port %d", PORT);
+  });
 });
 export {
   OpenPage

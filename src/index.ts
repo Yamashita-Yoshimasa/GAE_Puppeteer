@@ -51,37 +51,30 @@ export const OpenPage = async () => {
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-let namesResolve:  object | undefined;
-let pricesResolve:  object | undefined;
-let idResolve:  object | undefined;
+// let namesResolve:  object | undefined;
+// let pricesResolve:  object | undefined;
+// let idResolve:  object | undefined;
 
-const GetData = async () => {
-  const Resolve = await OpenPage();
-  console.log('呼び出し');
-  [namesResolve, pricesResolve, idResolve] = [
-    Resolve?.[0],
-    Resolve?.[1],
-    Resolve?.[2],
-  ];
-};
 
-void GetData();
-
-app.get('/pckoubou/names', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.json('test');
+void OpenPage().then((Response) => {
+  app.get('/pckoubou/names', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON.stringify(Response?.[0]));
+  });
+  
+  app.get('/pckoubou/prices', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON.stringify(Response?.[1]));
+  });
+  
+  app.get('/pckoubou/id', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON.stringify(Response?.[2]));
+  });
+  
+  app.listen(PORT, () => {
+    console.log('Server running on port %d', PORT);
+  });
+  
 });
 
-app.get('/pckoubou/prices', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.json(JSON.stringify(pricesResolve));
-});
-
-app.get('/pckoubou/id', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.json(JSON.stringify(idResolve));
-});
-
-app.listen(PORT, () => {
-  console.log('Server running on port %d', PORT);
-});

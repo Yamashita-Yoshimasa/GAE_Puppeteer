@@ -19,8 +19,30 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import express from "express";
-import { OpenPage } from "./containers/Puppeteer";
-import { Test } from "./containers/test";
+import puppeteer from "puppeteer";
+import dotenv from "dotenv";
+const OpenPage = () => __async(void 0, null, function* () {
+  let pckoubouNames = [];
+  let pckoubouPrices = [];
+  let pckoubouId = [];
+  dotenv.config();
+  const browser = yield puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    headless: true
+  });
+  const page = yield browser.newPage();
+  yield page.goto(process.env.PC_KOUBOU_URL || "", {
+    waitUntil: "networkidle2",
+    timeout: 0
+  });
+  pckoubouNames = yield page.$$eval(".name", (item) => item.map((names) => names.textContent));
+  pckoubouPrices = yield page.$$eval(".price--num", (item) => item.map((prices) => prices.textContent));
+  pckoubouId = yield page.$$eval(".item-code > dd", (item) => item.map((id) => id.textContent));
+  yield browser.close();
+  if (typeof pckoubouNames === "object" && pckoubouNames != null && typeof pckoubouPrices === "object" && pckoubouPrices != null && typeof pckoubouId === "object" && pckoubouId != null) {
+    return Promise.resolve([pckoubouNames, pckoubouPrices, pckoubouId]);
+  }
+});
 const PORT = process.env.PORT || 5e3;
 const app = express();
 let namesResolve;
@@ -38,7 +60,7 @@ const GetData = () => __async(void 0, null, function* () {
 void GetData();
 app.get("/", (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  res.json(Test());
+  res.json(JSON.stringify(namesResolve));
 });
 app.get("/pckoubou/prices", (req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -51,3 +73,6 @@ app.get("/pckoubou/id", (req, res) => {
 app.listen(PORT, () => {
   console.log("Server running on port %d", PORT);
 });
+export {
+  OpenPage
+};

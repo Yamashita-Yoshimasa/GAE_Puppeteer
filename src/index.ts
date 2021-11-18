@@ -57,11 +57,7 @@ app.get('/', (req, res) => {
 // let pricesResolve:  object | undefined;
 // let idResolve:  object | undefined;
 
-app.listen(PORT, () => {
-  console.log('Server running on port %d', PORT);
-});
-
-void OpenPage().then((Response) => {
+OpenPage().then((Response) => {
   app.get('/pckoubou/names', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.json(JSON.stringify(Response?.[0]));
@@ -77,5 +73,10 @@ void OpenPage().then((Response) => {
     res.json(JSON.stringify(Response?.[2]));
   });
   
+});
+
+
+app.listen(PORT, () => {
+  console.log('Server running on port %d', PORT);
 });
 

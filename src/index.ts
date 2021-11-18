@@ -67,9 +67,9 @@ const GetData = async () => {
 
 void GetData();
 
-app.get('/', (req, res) => {
+app.get('/pckoubou/names', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.json(JSON.stringify(namesResolve));
+  res.json('test');
 });
 
 app.get('/pckoubou/prices', (req, res) => {

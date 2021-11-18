@@ -17,8 +17,7 @@
   "scripts": {
     "start": "node --es-module-specifier-resolution=node ./build/index.js",
     "build": "node build.js",
-    "install": "yarn install",
-    "bck": "node --es-module-specifier-resolution=node ./build/index.js",
+    "bck": "node --es-module-specifier-resolution=node ./build/index.js"
   },
   "browserslist": {
     "production": [

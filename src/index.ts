@@ -5,6 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import express from 'express';
 import { OpenPage } from './containers/Puppeteer';
+import  { Test } from './containers/test'
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -27,7 +28,7 @@ void GetData();
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.json({id:1234});
+  res.json(Test());
 });
 
 app.get('/pckoubou/prices', (req, res) => {

@@ -20,6 +20,7 @@ var __async = (__this, __arguments, generator) => {
 };
 import express from "express";
 import { OpenPage } from "./containers/Puppeteer";
+import { Test } from "./containers/test";
 const PORT = process.env.PORT || 5e3;
 const app = express();
 let namesResolve;
@@ -37,7 +38,7 @@ const GetData = () => __async(void 0, null, function* () {
 void GetData();
 app.get("/", (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  res.json({ id: 1234 });
+  res.json(Test());
 });
 app.get("/pckoubou/prices", (req, res) => {
   res.setHeader("Content-Type", "application/json");

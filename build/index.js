@@ -40,7 +40,7 @@ const OpenPage = () => __async(void 0, null, function* () {
   pckoubouId = yield page.$$eval(".item-code > dd", (item) => item.map((id) => id.textContent));
   yield browser.close();
   if (typeof pckoubouNames === "object" && pckoubouNames != null && typeof pckoubouPrices === "object" && pckoubouPrices != null && typeof pckoubouId === "object" && pckoubouId != null) {
-    return Promise.resolve([pckoubouNames, pckoubouPrices, pckoubouId]);
+    return [pckoubouNames, pckoubouPrices, pckoubouId];
   }
 });
 const PORT = process.env.PORT || 5e3;

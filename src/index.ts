@@ -43,7 +43,7 @@ export const OpenPage = async () => {
     typeof pckoubouId === 'object' &&
     pckoubouId != null
   ) {
-    return Promise.resolve([pckoubouNames, pckoubouPrices, pckoubouId]);
+    return [pckoubouNames, pckoubouPrices, pckoubouId];
   }
 };
 
@@ -51,9 +51,9 @@ export const OpenPage = async () => {
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-let namesResolve: any;
-let pricesResolve: any;
-let idResolve: any;
+let namesResolve:  object | undefined;
+let pricesResolve:  object | undefined;
+let idResolve:  object | undefined;
 
 const GetData = async () => {
   const Resolve = await OpenPage();

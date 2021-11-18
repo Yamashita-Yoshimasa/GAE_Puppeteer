@@ -46,7 +46,10 @@ const OpenPage = () => __async(void 0, null, function* () {
 const PORT = process.env.PORT || 5e3;
 const app = express();
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send(`Hello World port ${PORT}`);
+});
+app.listen(PORT, () => {
+  console.log("Server running on port %d", PORT);
 });
 void OpenPage().then((Response) => {
   app.get("/pckoubou/names", (req, res) => {
@@ -60,9 +63,6 @@ void OpenPage().then((Response) => {
   app.get("/pckoubou/id", (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.json(JSON.stringify(Response == null ? void 0 : Response[2]));
-  });
-  app.listen(PORT, () => {
-    console.log("Server running on port %d", PORT);
   });
 });
 export {

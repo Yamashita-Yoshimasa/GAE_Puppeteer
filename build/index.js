@@ -45,6 +45,9 @@ const OpenPage = () => __async(void 0, null, function* () {
 });
 const PORT = process.env.PORT || 5e3;
 const app = express();
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 void OpenPage().then((Response) => {
   app.get("/pckoubou/names", (req, res) => {
     res.setHeader("Content-Type", "application/json");

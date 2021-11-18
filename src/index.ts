@@ -50,7 +50,9 @@ export const OpenPage = async () => {
 
 const PORT = process.env.PORT || 5000;
 const app = express();
-
+app.get('/', (req, res) => {
+  res.send('Hello World')
+});
 // let namesResolve:  object | undefined;
 // let pricesResolve:  object | undefined;
 // let idResolve:  object | undefined;

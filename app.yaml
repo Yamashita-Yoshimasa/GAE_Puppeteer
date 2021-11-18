@@ -1,0 +1,4 @@
+env: standard
+instance_class: F1
+runtime: nodejs14
+service: default

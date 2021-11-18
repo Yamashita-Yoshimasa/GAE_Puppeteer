@@ -35,7 +35,7 @@ const GetData = () => __async(void 0, null, function* () {
   ];
 });
 void GetData();
-app.get("/pckoubou/names", (req, res) => {
+app.get("/", (req, res) => {
   res.setHeader("Content-Type", "application/json");
   res.json(JSON.stringify(namesResolve));
 });

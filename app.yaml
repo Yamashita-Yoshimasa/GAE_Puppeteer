@@ -6,10 +6,13 @@ entrypoint: node --es-module-specifier-resolution=node ./build/index.js
 
 handlers:
 - url: /pckoubou/names
+  script: auto
 
 - url: /pckoubou/prices
+  script: auto
 
 - url: /pckoubou/id
+  script: auto
 
 automatic_scaling:
   min_instances: 0

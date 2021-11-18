@@ -5,5 +5,7 @@ service: default
 
 handlers:
 - url: /pckoubou/names
+
 - url: /pckoubou/prices
+
 - url: /pckoubou/id

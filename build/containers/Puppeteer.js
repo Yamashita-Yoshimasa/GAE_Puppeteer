@@ -26,6 +26,7 @@ const OpenPage = () => __async(void 0, null, function* () {
   let pckoubouId = [];
   dotenv.config();
   const browser = yield puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
     headless: true
   });
   const page = yield browser.newPage();

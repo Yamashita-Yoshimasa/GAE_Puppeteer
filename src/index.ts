@@ -27,7 +27,7 @@ void GetData();
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.json(JSON.stringify(namesResolve));
+  res.json({id:1234});
 });
 
 app.get('/pckoubou/prices', (req, res) => {
